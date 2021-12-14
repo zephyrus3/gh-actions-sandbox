@@ -1,17 +1,20 @@
 name: 'yt2anchor - Upload Episode'
+
 on:
   push:
     paths: 
       - episode.json
     branches: [main]
+
 jobs:
   upload_episode:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Upload Episode from YouTube To Anchor.Fm
         uses: zephyrus3/yt2anchorfm@main
-        env:
+        with:
           ANCHOR_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
           KEEP_EPISODES_NUM: 2
